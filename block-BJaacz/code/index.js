@@ -5,8 +5,7 @@
 */
 
 function addTwo(num) {
-  let add = 2;
-  return add + num;
+  return add + 2;
 } 
 
 /*
@@ -14,8 +13,7 @@ function addTwo(num) {
 */
 
 function addThree(num) {
-  let add = 3;
-  return add + num;
+  return add + 3;
 } 
 
 /*
@@ -23,8 +21,7 @@ function addThree(num) {
 */
 
 function addFive(num) {
-  let add = 5;
-  return add + num;
+  return add + 5;
 }
 
 
@@ -35,10 +32,10 @@ function addFive(num) {
     - While doing so use the funciton addTwo
 */
 
-function addTwoToArray(arr, cb) {
+function addTwoToArray(arr) {
   let finalArr = [];
   for (let num of arr) {
-    finalArr.push(cb(num));
+    finalArr.push(addTwo(num));
   }
   return finalArr
 }
@@ -51,10 +48,10 @@ addTwoToArray([1,4,5,4], addTwo)
     - while doing so use the funciton addThree
 */
 
-function addThreeToArray(arr, cb) {
+function addThreeToArray(arr) {
   let finalArr = [];
   for (let num of arr) {
-    finalArr.push(cb(num))
+    finalArr.push(addThree(num))
   }
   return finalArr;
 }
@@ -66,10 +63,10 @@ function addThreeToArray(arr, cb) {
     - while doing so use the funciton addThree
 */
 
-function addFiveToArray(arr, cb) {
+function addFiveToArray(arr) {
   let finalArr = [];
   for (let num of arr) {
-    finalArr.push(cb(num));
+    finalArr.push(addFive(num));
   }
   return finalArr;
 } 
@@ -143,9 +140,10 @@ function first(fn) {
   - Also write the required code to call the function
 */
 function second() {
-  return function third(num) {
+   function third(num) {
     return num + 1;
   }
+  return third;
 }
 let addOne = second();
 console.log(addOne(10))
@@ -158,16 +156,15 @@ console.log(addOne(10))
   - also write the required code to call the function.
 */
 
-// function cBack() {
-  
-// }
 
-// function callMe(cb) {
-//   let final = cb;
-//   final.push(cb());
-//   return final;
-// }
-// callMe(cBack);
+
+function callMe(cb) {
+  let final = cb();
+  return final;
+}
+let test = callMe(function () {
+  return 14;
+})
 
 
 // Data Starts (Don't change this)
@@ -496,7 +493,13 @@ filter is a higher order function.
 */
 
 function filter(arr, cb) {
-  return (cb(arr));
+  let finalArr = [];
+  for (let person of arr) {
+    if (cb(person)) {
+      finalArr.push(person)
+    }
+  }
+  return finalArr;
 }
 
 

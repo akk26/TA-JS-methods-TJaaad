@@ -19,7 +19,7 @@ console.log(words.map((word) => word.length));
 
 // - Create a new array that only contains word with atleast one vowel.
 
-let vowelWord = words.filter((word) => {
+let vowelWord = words.filter((word) =>  {
   if (
     word.toLowerCase().includes("a") ||
     word.toLowerCase().includes("e") ||
@@ -101,12 +101,7 @@ let oddNum = numbers.filter((num) => {
 
 // - Create a new array that should have true for even number and false for odd numbers.
 
-let comparison = numbers.filter((num) => {
-  if (num % 2 === 0) {
-    return true;
-  } 
-});
-
+let comparison = numbers.map((num) => num % 2 === 0);
 
 // - Sort the above number in assending order.
 
@@ -114,7 +109,7 @@ let assending = [...numbers].sort((a, b) =>  a - b);
 
 // - Does sort mutate the original array?
 
-console.log(numbers);
+// yes
 
 // - Find the sum of the numbers in the array.
 
@@ -145,7 +140,11 @@ let strings = [
 
 // - Write a function averageWordLength that receives an array of words2 and calculate the average length of the words.
 
-let averageWordLength = strings.reduce((acc, cv) => {
-  acc = acc.length + cv.length / cv.length;
-  return acc;
-}, 0);
+function averageWordLength(word) {
+  return (
+    word.map((w) => w.length)
+      .reduce((acc, cv) => {
+        return acc + cv / word.length;
+    },0)
+  );
+} 

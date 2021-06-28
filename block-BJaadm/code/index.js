@@ -76,7 +76,7 @@ let female = persons.filter((gender) => {
 
 // Log all the filtered female ('F') whose name starts with 'C' or 'J' in persons array
 
-// console.log(persons.filter((personName) => personName.sex = "F").filter((person) => person.name.startsWith("C") || person.name.startsWith("J")));
+console.log(persons.filter((personName) => personName.sex === "F").filter((person) => person.name.startsWith("C") || person.name.startsWith("J")));
 
 // Log all the even numbers from peopleGrade array
 
@@ -105,51 +105,87 @@ persons.find((personName) => {
 
 // Find the first name that starts with 'J', grade is greater than 10 and is a female
 
-// persons.find((personName) => {
-//   if (personName.sex = "F" && personName.grade > 10 && personName.name.startsWith("J") ) {
-//     return personName.name;
-//   }
-// }).name;
+persons.find((person) => {
+ if( person.name.startsWith("J") && person.grade > 10 && person.sex === "F")
+  return person.name;
+});
 
 
 // Filter all the female from persons array and store in femalePersons array
 
+let femalePersons = persons.filter((people) => people.sex === "F")
+
 // Filter all the male from persons array and store in malePersons array
+
+let malePersons = persons.filter((people) => people.sex === "M");
 
 // Find the sum of all grades and store in gradeTotal
 
-let gradeTotal = persons.reduce((acc, cv) => {
-  acc = acc + cv.grade;
+let gradeTotal = peopleGrade.reduce((acc, cv) => {
+  acc = acc + cv;
   return acc;
 },0)
 
 // Find the average grade
 
-// let avg = persons.reduce((acc, cv) => {
-//   acc = acc + cv.grade;
-//   return acc/cv.length;
-// }, 0);
+gradeTotal / peopleGrade.length 
 
 // Find the average grade of male
 
+let maleGrade = persons.filter((p) => p.sex === "M");
+maleGrade.reduce((acc, cv) => {
+  acc = acc + cv.grade;
+  return acc;
+}, 0) / maleGrade.length;
 // Find the average grade of female
+
+let femaleGrade = persons.filter((p) => p.sex === "F");
+femaleGrade.reduce((acc, cv) => {
+  acc = acc + cv.grade;
+  return acc;
+}, 0) / femaleGrade.length;
 
 // Find the highest grade
 
-
+[...peopleGrade].sort((a, b) => a - b).pop();
 
 // Find the highest grade in male
 
-// Find the highest grade in female
+let maleGrade = persons.filter((p) => p.sex === "M")
+  .map((persons) => persons.grade);
+[...maleGrade].sort((a, b) => a - b).pop();
+  // Find the highest grade in female
+
+let maleGrade = persons
+  .filter((p) => p.sex === "F")
+  .map((persons) => persons.grade);
+[...maleGrade].sort((a, b) => a - b).pop();
 
 // Find the highest grade for people whose name starts with 'J' or 'P'
 
+
+let maleGrade = persons
+  .filter((p) => p.name.startsWith("J") || p.name.startsWith("P"))
+  .map((persons) => persons.grade);
+[...maleGrade].sort((a, b) => a - b).pop();
+
+
 // Sort the peopleGrade in ascending order and log the value of peopleGrade. Notice did the elements of peopleGrade got changed?
+
+peopleGrade.sort((a,b) => a-b );
 
 // Sort the peopleGrade in descending order
 
+peopleGrade.sort((a, b) => b-a );
+
 // Sort the peopleGrade in descending order this time you have to make sure you don't mutate the original array
+
+[...peopleGrade].sort((a, b) => b - a);
 
 // Sort the array peopelName in ascending `ABCD..Za....z`
 
+peopleName.sort();
+
 // Sort the array peopelName in ascending `ABCD..Za....z`. Make sure not to mutate the array
+
+[...peopleName].sort();

@@ -1,35 +1,95 @@
 // NOTE: You can not use reduce methods to solve this exercise
 
+
 function countAllPeople() {
-  // your code goes here
+  let count = 0;
+  got.houses.forEach((eachHouse) => {
+    eachHouse.people.forEach((eachMember) => {
+      count += 1;
+    })
+  })
+  return count;
 }
 
 function peopleByHouses() {
-  // your code goes here
+  let final = {};
+  got.houses.forEach(houseDetails => {
+    final[houseDetails.name] = houseDetails.people.length;
+  })
+  return final
 }
 
 function everyone() {
-  // your code goes here
+  let arr = [];
+  got.houses.forEach((houseDetails) => {
+    houseDetails.people.map((peoples) => {
+      arr.push(peoples.name)
+    })
+  })
+  return arr;
 }
 
 function nameWithS() {
-  // your code goes here
+  let filteredName = [];
+  got.houses.forEach((houseDetails) => {
+    houseDetails.people.map((peoples) => {
+      if (
+        peoples.name.includes("S") ||
+        peoples.name.includes("s")
+      ) {
+        filteredName.push(peoples.name);
+      };
+    });
+  });
+  return filteredName;
 }
 
 function nameWithA() {
-  // your code goes here
+  let filteredName = [];
+  got.houses.forEach((houseDetails) => {
+    houseDetails.people.map((peoples) => {
+      if (peoples.name.includes("A") || peoples.name.includes("a")) {
+        filteredName.push(peoples.name);
+      }
+    })
+  })
+  return filteredName;
 }
 
 function surnameWithS() {
-  // your code goes here
+  let filteredSurName = [];
+  got.houses.forEach((houseDetails) => {
+    houseDetails.people.map((peoples) => {
+      let surName = peoples.name.split(" ");
+      if (surName[1].includes("S")) {
+        filteredSurName.push(peoples.name);
+      }
+    });
+  });
+  return filteredSurName;
 }
 
 function surnameWithA() {
-  // your code goes here
+  let filteredSurName = [];
+  got.houses.forEach((houseDetails) => {
+    houseDetails.people.map((peoples) => {
+      let surName = peoples.name.split(" ");
+      if (surName[1].includes("A")) {
+        filteredSurName.push(peoples.name);
+      }
+    });
+  });
+  return filteredSurName;
 }
 
 function peopleNameOfAllHouses() {
-  // your code goes here
+  let obj = {};
+  got.houses.forEach((houseDetails) => {
+    obj[houseDetails.name] = houseDetails.people.map((peopleName) => {
+      return peopleName.name;
+  })
+  })
+  return obj;
 }
 
 // Testing your result after writing your function

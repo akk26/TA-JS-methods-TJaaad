@@ -1,35 +1,86 @@
 // NOTE: You can only use the (reduce) array method to solve this exercise:
 
 function countAllPeople() {
-  // your code goes here
+  let count = got.houses.reduce((acc, cv) => {
+    acc = acc + cv.people.length
+    return acc;
+  }, 0)
+  return count
 }
 
 function peopleByHouses() {
-  // your code goes here
+  let totalPeopleByHouse = got.houses.reduce((acc, cv) => {
+    acc[cv.name] = cv.people.length;
+    return acc;
+  }, {})
+  return totalPeopleByHouse;
 }
 
 function everyone() {
-  // your code goes here
+ let name =  got.houses.reduce((acc, cv) => {
+    let people = cv.people.map((allPeopleName) => {
+      return allPeopleName.name;
+    })
+   acc.push(people);
+   return acc.flat(Infinity
+   );
+ },[])
+  return name;
 }
 
 function nameWithS() {
-  // your code goes here
+ let persons = everyone();
+ let nameS = persons.reduce((acc,cv) => {
+  if (cv.toLowerCase().includes("s")) {
+      acc.push(cv);
+  }
+   return acc;
+ }, [])
+  return nameS
 }
 
+
+
 function nameWithA() {
-  // your code goes here
+  let persons = everyone();
+  return persons.reduce((acc, cv) => {
+    if (cv.toLowerCase().includes("a")) {
+      acc.push(cv);
+    }
+    return acc;
+  },[])
 }
 
 function surnameWithS() {
-  // your code goes here
+  let persons = everyone();
+  return persons.reduce((acc, cv) => {
+    let splittedName = cv.split(" ");
+    if (splittedName[1][0].toLowerCase().includes("s")) {
+      acc.push(cv);
+    }
+    return acc;
+  }, []);
 }
 
 function surnameWithA() {
-  // your code goes here
+  let persons = everyone();
+  return persons.reduce((acc, cv) => {
+    let splittedName = cv.split(" ");
+    if (splittedName[1][0].toLowerCase().includes("a")) {
+      acc.push(cv);
+    }
+    return acc;
+  }, []);
 }
 
 function peopleNameOfAllHouses() {
-  // your code goes here
+ return got.houses.reduce((acc,cv) => {
+  acc[cv.name] = cv.people.map((people) => {
+    return people.name;
+  })
+   return acc;
+   
+  },{})
 }
 
 // Testing your result after writing your function
@@ -40,7 +91,7 @@ console.log(peopleByHouses());
 // Output should be
 //{Arryns: 1, Baratheons: 6, Dothrakis: 1, Freys: 1, Greyjoys: 3, Lannisters: 4,Redwyne: 1,Starks: 8,Targaryens: 2,Tullys: 4,Tyrells: 2}
 
-console.log(everyone());
+console.log(everyone()," :everyone");
 // Output should be
 //["Eddard "Ned" Stark", "Benjen Stark", "Robb Stark", "Sansa Stark", "Arya Stark", "Brandon "Bran" Stark", "Rickon Stark", "Jon Snow", "Tywin Lannister", "Tyrion Lannister", "Jaime Lannister", "Queen Cersei (Lannister) Baratheon", "King Robert Baratheon", "Stannis Baratheon", "Renly Baratheon", "Joffrey Baratheon", "Tommen Baratheon", "Myrcella Baratheon", "Daenerys Targaryen", "Viserys Targaryen", "Balon Greyjoy", "Theon Greyjoy", "Yara Greyjoy", "Margaery (Tyrell) Baratheon", "Loras Tyrell", "Catelyn (Tully) Stark", "Lysa (Tully) Arryn", "Edmure Tully", "Brynden Tully", "Olenna (Redwyne) Tyrell", "Walder Frey", "Jon Arryn", "Khal Drogo"]
 
